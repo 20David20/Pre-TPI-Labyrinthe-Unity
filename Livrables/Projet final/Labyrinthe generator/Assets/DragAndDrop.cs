@@ -31,8 +31,15 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
+               
         if (Input.GetMouseButtonDown(0))
         {
+            if(this.gameObject.transform.position.x == -3.03 && this.gameObject.transform.position.y == -3.85)
+            {
+                GameObject myGameObject = Instantiate(this.gameObject) as GameObject;
+            }
+            //GameObject Duplicate = Instantiate(wall);
+
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
