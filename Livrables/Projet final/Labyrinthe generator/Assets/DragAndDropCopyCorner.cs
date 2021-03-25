@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDrop : MonoBehaviour
+public class DragAndDropCopyCorner : MonoBehaviour
 {
     public GameObject wall;
-    private bool moving;
 
+
+    private bool moving;
+    private Vector3 initialPos = new Vector3(-0.161F,-3.778F,-6.951172F);
     private float startPosX;
     private float startPosY;
 
@@ -27,12 +29,24 @@ public class DragAndDrop : MonoBehaviour
 
             this.gameObject.transform.localPosition = new Vector3(mousPos.x - startPosX, mousPos.y - startPosY, this.gameObject.transform.localPosition.z);
         }
+
+        if (Input.GetKeyDown("r"))
+        {
+            this.transform.Rotate(0,0,90);
+        }
     }
 
     private void OnMouseDown()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
+            /*if(this.gameObject.transform.position.x == -3.03 && this.gameObject.transform.position.y == -3.85)
+            {
+                GameObject myGameObject = Instantiate(this.gameObject) as GameObject;
+            }*/
+            //GameObject Duplicate = Instantiate(wall);
+
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -47,5 +61,6 @@ public class DragAndDrop : MonoBehaviour
     private void OnMouseUp()
     {
         moving = false;
+        GameObject CopyCorner = Instantiate(this.gameObject, initialPos, this.transform.rotation) as GameObject;
     }
 }

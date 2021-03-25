@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DragAndDrop : MonoBehaviour
+public class DragAndDropCopyStraight : MonoBehaviour
 {
-    public GameObject wall;
-    private bool moving;
+    public GameObject wallCorner;
 
+
+    private bool moving;
+    private Vector3 initialPos = new Vector3(-3.03F, -3.85F, -2F);
     private float startPosX;
     private float startPosY;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -31,8 +33,15 @@ public class DragAndDrop : MonoBehaviour
 
     private void OnMouseDown()
     {
+               
         if (Input.GetMouseButtonDown(0))
         {
+            /*if(this.gameObject.transform.position.x == -3.03 && this.gameObject.transform.position.y == -3.85)
+            {
+                GameObject myGameObject = Instantiate(this.gameObject) as GameObject;
+            }*/
+            //GameObject Duplicate = Instantiate(wall);
+
             Vector3 mousePos;
             mousePos = Input.mousePosition;
             mousePos = Camera.main.ScreenToWorldPoint(mousePos);
@@ -47,5 +56,6 @@ public class DragAndDrop : MonoBehaviour
     private void OnMouseUp()
     {
         moving = false;
+        GameObject CopyStraight = Instantiate(this.gameObject, initialPos, this.transform.rotation) as GameObject;
     }
 }
